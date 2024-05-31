@@ -1,124 +1,208 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include <iostream>
 #include "G.hpp"
+#include <iostream>
 
-void input(GLFWwindow* window);
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-void mouse_callback(GLFWwindow* window, double xposIn, double yposIn);
+void processInput(GLFWwindow* window);
 
-bool firstMouse{ true };
+// settings
+const unsigned int SCR_WIDTH = 800;
+const unsigned int SCR_HEIGHT = 600;
+
+const char* vertexShaderSource = "#version 330 core\n"
+"layout (location = 0) in vec3 aPos;\n"
+"void main()\n"
+"{\n"
+"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+"}\0";
+const char* fragmentShaderSource = "#version 330 core\n"
+"out vec4 FragColor;\n"
+"void main()\n"
+"{\n"
+"   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+"}\n\0";
 double lastX{};
 double lastY{};
-double elapsed{ 0.0 };
+double elapsed{};
+
 
 
 int main()
 {
-	glfwInit();
-	
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
-	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+    // glfw: initialize and configure
+    // ------------------------------
+    glfwInit();
 
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+    glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-
-	// Get the primary monitor
-	GLFWmonitor* monitor = glfwGetPrimaryMonitor();
-
-	// Get the video mode for the monitor
-	const GLFWvidmode* mode = glfwGetVideoMode(monitor);
-
-	double ratioX = G::WND_WIDTH / 1920.0;
-	double ratioY = G::WND_HEIGHT / 1080.0;
-
-	double newWindowSizeX = ratioX * mode->width;
-	double newWindowSizeY = ratioY * mode->height;
-
-	lastX = newWindowSizeX / 2.0;
-	lastY = newWindowSizeY / 2.0;
-	
-	G::WND_WIDTH = (int)newWindowSizeX;
-	G::WND_HEIGHT = (int)newWindowSizeY;
-
-	GLFWwindow* window = glfwCreateWindow((int)newWindowSizeX, (int)newWindowSizeY, "Voxel", NULL, NULL);
-
-	if (window == NULL)
-	{
-		std::cout << "Unable to create the GLFW window" << std::endl;
-		glfwTerminate();
-		return -1;
-	}
-	glfwMakeContextCurrent(window);
-	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-	glfwSetCursorPosCallback(window, mouse_callback);
-
-	gladLoadGL();
-
-	glViewport(0, 0, G::WND_WIDTH, G::WND_HEIGHT);
-	
-	glfwSetWindowPos(window, int((mode->width / 2.0) - (G::WND_WIDTH / 2.0)), int((mode->height / 2.0) - (G::WND_HEIGHT / 2.0)));
-
-	glEnable(GL_DEPTH_TEST);
-	glClearColor(0.2f, 0.6f, 0.95f, 1.0f);
-
-	double start = glfwGetTime();
-
-	while (!glfwWindowShouldClose(window))
-	{
-		elapsed = glfwGetTime() - start;
-		start = glfwGetTime();
-
-		input(window);
-		glfwPollEvents();
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    // Get the primary monitor
+    GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+
+    // Get the video mode for the monitor
+    const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+
+    double ratioX = G::WND_WIDTH / 1920.0;
+    double ratioY = G::WND_HEIGHT / 1080.0;
+
+    double newWindowSizeX = ratioX * mode->width;
+    double newWindowSizeY = ratioY * mode->height;
+
+    lastX = newWindowSizeX / 2.0;
+    lastY = newWindowSizeY / 2.0;
+
+    G::WND_WIDTH = (int)newWindowSizeX;
+    G::WND_HEIGHT = (int)newWindowSizeY;
+
+    GLFWwindow* window = glfwCreateWindow((int)newWindowSizeX, (int)newWindowSizeY, "Voxel", NULL, NULL);
+
+    if (window == NULL)
+    {
+        std::cout << "Unable to create the GLFW window" << std::endl;
+        glfwTerminate();
+        return -1;
+    }
+    glfwMakeContextCurrent(window);
+
+    gladLoadGL();
+    glfwSwapInterval(1);
+
+    glViewport(0, 0, G::WND_WIDTH, G::WND_HEIGHT);
+
+    glfwSetWindowPos(window, int((mode->width / 2.0) - (G::WND_WIDTH / 2.0)), int((mode->height / 2.0) - (G::WND_HEIGHT / 2.0)));
 
 
-		glfwSwapBuffers(window);
-	}
 
-	glfwDestroyWindow(window);
-	glfwTerminate();
-	return 0;
+    // build and compile our shader program
+    // ------------------------------------
+    // vertex shader
+    unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
+    glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
+    glCompileShader(vertexShader);
+    // check for shader compile errors
+    int success;
+    char infoLog[512];
+    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
+    if (!success)
+    {
+        glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
+        std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
+    }
+    // fragment shader
+    unsigned int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+    glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
+    glCompileShader(fragmentShader);
+    // check for shader compile errors
+    glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
+    if (!success)
+    {
+        glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
+        std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
+    }
+    // link shaders
+    unsigned int shaderProgram = glCreateProgram();
+    glAttachShader(shaderProgram, vertexShader);
+    glAttachShader(shaderProgram, fragmentShader);
+    glLinkProgram(shaderProgram);
+    // check for linking errors
+    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
+    if (!success) {
+        glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
+        std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
+    }
+    glDeleteShader(vertexShader);
+    glDeleteShader(fragmentShader);
+
+    // set up vertex data (and buffer(s)) and configure vertex attributes
+    // ------------------------------------------------------------------
+    float vertices[] = {
+         0.5f,  0.5f, 0.0f,  // top right
+         0.5f, -0.5f, 0.0f,  // bottom right
+        -0.5f, -0.5f, 0.0f,  // bottom left
+        -0.5f,  0.5f, 0.0f   // top left 
+    };
+    unsigned int indices[] = {  // note that we start from 0!
+        0, 1, 3,  // first Triangle
+        1, 2, 3   // second Triangle
+    };
+    unsigned int VBO, VAO, EBO;
+    glGenVertexArrays(1, &VAO);
+    glGenBuffers(1, &VBO);
+    glGenBuffers(1, &EBO);
+    // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
+    glBindVertexArray(VAO);
+
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+
+    // note that this is allowed, the call to glVertexAttribPointer registered VBO as the vertex attribute's bound vertex buffer object so afterwards we can safely unbind
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+    // remember: do NOT unbind the EBO while a VAO is active as the bound element buffer object IS stored in the VAO; keep the EBO bound.
+    //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+    // You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens. Modifying other
+    // VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
+    glBindVertexArray(0);
+
+
+    // uncomment this call to draw in wireframe polygons.
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+    // render loop
+    // -----------
+    while (!glfwWindowShouldClose(window))
+    {
+        // input
+        // -----
+        processInput(window);
+
+        // render
+        // ------
+        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        // draw our first triangle
+        glUseProgram(shaderProgram);
+        glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
+        //glDrawArrays(GL_TRIANGLES, 0, 6);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        // glBindVertexArray(0); // no need to unbind it every time 
+
+        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
+        // -------------------------------------------------------------------------------
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+    }
+
+    // optional: de-allocate all resources once they've outlived their purpose:
+    // ------------------------------------------------------------------------
+    glDeleteVertexArrays(1, &VAO);
+    glDeleteBuffers(1, &VBO);
+    glDeleteBuffers(1, &EBO);
+    glDeleteProgram(shaderProgram);
+
+    // glfw: terminate, clearing all previously allocated GLFW resources.
+    // ------------------------------------------------------------------
+    glfwTerminate();
+    return 0;
 }
 
-void input(GLFWwindow* window)
+// process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
+// ---------------------------------------------------------------------------------------------------------
+void processInput(GLFWwindow* window)
 {
-	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-	{
-		glfwSetWindowShouldClose(window, true);
-		return;
-	}
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, true);
 }
-
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
-{
-	glViewport(0, 0, width, height);
-	return;
-}
-
-void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
-{
-
-	if (firstMouse)
-	{
-		lastX = xposIn;
-		lastY = yposIn;
-		firstMouse = false;
-	}
-
-	double xoffset = xposIn - lastX;
-	double yoffset = lastY - yposIn; // reversed since y-coordinates go from bottom to top
-
-	lastX = xposIn;
-	lastY = yposIn;
-
-	// update camera or something based on xposIn and lastX here
-
-	return;
-}
-
-
