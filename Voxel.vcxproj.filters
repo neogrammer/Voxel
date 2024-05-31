@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="assets">
+      <UniqueIdentifier>{bf840952-0fde-4ff4-8ef3-b6d16b399e0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\shaders">
+      <UniqueIdentifier>{1dfcb58c-9ad6-4079-93d5-3f37f20d8497}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\shaders\cubeStd">
+      <UniqueIdentifier>{83347650-9abe-4cfd-b560-1f76530a0266}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\shaders\lightSourceCubeStd">
+      <UniqueIdentifier>{49d2c4c2-6665-443d-8362-cfef0f24682f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core">
+      <UniqueIdentifier>{9fbe51be-777b-4699-aa1b-61dceec28e7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core">
+      <UniqueIdentifier>{488550da-1fe8-4dbf-9462-52a9ef7f060b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3rdParty">
+      <UniqueIdentifier>{f7c17209-3693-4b78-a83b-e5c2117fb80d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3rdParty\STB">
+      <UniqueIdentifier>{0470c298-48ff-46f4-8431-d36b764b160d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\3rdParty">
+      <UniqueIdentifier>{e600a35c-9caf-48c6-b024-62011c47f87d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\3rdParty\STB">
+      <UniqueIdentifier>{984ab571-fb4d-41ab-8d14-e09753795ee3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="glad.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="G.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Camera.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\EBO.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Mesh.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Texture.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\VAO.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\VBO.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\3rdParty\STB\stb_image.cpp">
+      <Filter>Source Files\3rdParty\STB</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="G.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\Camera.hpp">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\EBO.hpp">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\Mesh.hpp">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\Shader.hpp">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\Texture.hpp">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\VAO.hpp">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\VBO.hpp">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\3rdParty\STB\stb_image.h">
+      <Filter>Header Files\3rdParty\STB</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\shaders\cubeStd\cubeStd.frag">
+      <Filter>assets\shaders\cubeStd</Filter>
+    </None>
+    <None Include="assets\shaders\cubeStd\cubeStd.vert">
+      <Filter>assets\shaders\cubeStd</Filter>
+    </None>
+    <None Include="assets\shaders\lightSourceCubeStd\lightSourceCubeStd.frag">
+      <Filter>assets\shaders\lightSourceCubeStd</Filter>
+    </None>
+    <None Include="assets\shaders\lightSourceCubeStd\lightSourceCubeStd.vert">
+      <Filter>assets\shaders\lightSourceCubeStd</Filter>
+    </None>
+  </ItemGroup>
+</Project>
