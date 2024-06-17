@@ -70,6 +70,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Label="Vcpkg" />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -106,7 +107,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalIncludeDirectories>C:\Users\jlhar\Documents\opengl\Voxel\src\3rdParty\STB;C:\Users\jlhar\Documents\opengl\Voxel\src\core;C:\sdks\GLAD\include;C:\sdks\opengl\glm-master\glm-master\glm;C:\sdks\opengl\glfw4\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\jlhar\Documents\opengl\Voxel\src\3rdParty\STB;C:\Users\jlhar\Documents\opengl\Voxel\src\core;C:\Users\jlhar\Documents\opengl\Voxel\src\3rdParty\GLAD\include;C:\sdks\opengl\glm-master\glm-master\glm;C:\sdks\opengl\glfw4\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -138,22 +139,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="G.cpp" />
-    <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\3rdParty\GLAD\src\glad.c" />
     <ClCompile Include="src\3rdParty\STB\stb_image.cpp" />
-    <ClCompile Include="src\core\Camera.cpp" />
     <ClCompile Include="src\core\EBO.cpp" />
-    <ClCompile Include="src\core\Mesh.cpp" />
-    <ClCompile Include="src\core\Texture.cpp" />
     <ClCompile Include="src\core\VAO.cpp" />
     <ClCompile Include="src\core\VBO.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="G.hpp" />
+    <ClInclude Include="src\3rdParty\GLAD\include\glad\glad.h" />
+    <ClInclude Include="src\3rdParty\GLAD\include\KHR\khrplatform.h" />
     <ClInclude Include="src\3rdParty\STB\stb_image.h" />
     <ClInclude Include="src\core\Camera.hpp" />
     <ClInclude Include="src\core\EBO.hpp" />
     <ClInclude Include="src\core\Mesh.hpp" />
+    <ClInclude Include="src\core\Model.hpp" />
     <ClInclude Include="src\core\Shader.hpp" />
     <ClInclude Include="src\core\Texture.hpp" />
     <ClInclude Include="src\core\VAO.hpp" />
@@ -164,6 +165,8 @@
     <None Include="assets\shaders\cubeStd\cubeStd.vert" />
     <None Include="assets\shaders\lightSourceCubeStd\lightSourceCubeStd.frag" />
     <None Include="assets\shaders\lightSourceCubeStd\lightSourceCubeStd.vert" />
+    <None Include="assets\shaders\stdShader\stdShader.frag" />
+    <None Include="assets\shaders\stdShader\stdShader.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

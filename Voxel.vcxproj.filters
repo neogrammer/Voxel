@@ -39,27 +39,42 @@
     <Filter Include="Header Files\3rdParty\STB">
       <UniqueIdentifier>{984ab571-fb4d-41ab-8d14-e09753795ee3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="assets\models">
+      <UniqueIdentifier>{a01c3048-a3f2-432d-b49a-fb0352838737}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\models\backback">
+      <UniqueIdentifier>{6278b113-8752-4b4a-ad30-44c4cd5072e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\shaders\stdShader">
+      <UniqueIdentifier>{759b3f4e-74a7-4bc1-9a0c-e5445e42075f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\3rdParty\GLAD">
+      <UniqueIdentifier>{d6e4b472-caf1-409f-98dc-3fd1eed6da37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\3rdParty\GLAD\include">
+      <UniqueIdentifier>{a6df4722-d65f-4797-aba4-03224a17483d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\3rdParty\GLAD\include\KHR">
+      <UniqueIdentifier>{d461b061-72f4-46fa-9827-4f425a3a9171}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\3rdParty\GLAD\include\glad">
+      <UniqueIdentifier>{275bbfc4-1847-4b23-a0c6-f186d9ce3637}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3rdParty\GLAD">
+      <UniqueIdentifier>{c45b1d35-69e5-4065-9b4d-235fd884398b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3rdParty\GLAD\src">
+      <UniqueIdentifier>{efcd2161-9e9b-4f90-acb0-c66c0b89117b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="glad.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="G.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\Camera.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
     <ClCompile Include="src\core\EBO.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\core\Mesh.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\core\Texture.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
     <ClCompile Include="src\core\VAO.cpp">
@@ -70,6 +85,9 @@
     </ClCompile>
     <ClCompile Include="src\3rdParty\STB\stb_image.cpp">
       <Filter>Source Files\3rdParty\STB</Filter>
+    </ClCompile>
+    <ClCompile Include="src\3rdParty\GLAD\src\glad.c">
+      <Filter>Source Files\3rdParty\GLAD\src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -100,6 +118,15 @@
     <ClInclude Include="src\3rdParty\STB\stb_image.h">
       <Filter>Header Files\3rdParty\STB</Filter>
     </ClInclude>
+    <ClInclude Include="src\3rdParty\GLAD\include\KHR\khrplatform.h">
+      <Filter>Header Files\3rdParty\GLAD\include\KHR</Filter>
+    </ClInclude>
+    <ClInclude Include="src\3rdParty\GLAD\include\glad\glad.h">
+      <Filter>Header Files\3rdParty\GLAD\include\glad</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\Model.hpp">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\cubeStd\cubeStd.frag">
@@ -113,6 +140,12 @@
     </None>
     <None Include="assets\shaders\lightSourceCubeStd\lightSourceCubeStd.vert">
       <Filter>assets\shaders\lightSourceCubeStd</Filter>
+    </None>
+    <None Include="assets\shaders\stdShader\stdShader.frag">
+      <Filter>assets\shaders\stdShader</Filter>
+    </None>
+    <None Include="assets\shaders\stdShader\stdShader.vert">
+      <Filter>assets\shaders\stdShader</Filter>
     </None>
   </ItemGroup>
 </Project>
