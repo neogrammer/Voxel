@@ -126,6 +126,8 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Users\jlhar\Documents\opengl\Voxel\src\3rdParty\STB;C:\Users\jlhar\Documents\opengl\Voxel\src\core;C:\sdks\opengl\glfw4\glfw\include;C:\sdks\opengl\glm-master\glm-master\glm;C:\sdks\GLAD\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -163,6 +165,8 @@
   <ItemGroup>
     <None Include="assets\shaders\cubeStd\cubeStd.frag" />
     <None Include="assets\shaders\cubeStd\cubeStd.vert" />
+    <None Include="assets\shaders\depthShader\depthShader.frag" />
+    <None Include="assets\shaders\depthShader\depthShader.vert" />
     <None Include="assets\shaders\lightSourceCubeStd\lightSourceCubeStd.frag" />
     <None Include="assets\shaders\lightSourceCubeStd\lightSourceCubeStd.vert" />
     <None Include="assets\shaders\stdShader\stdShader.frag" />
