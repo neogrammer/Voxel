@@ -163,6 +163,10 @@
     <ClInclude Include="src\core\VBO.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="assets\shaders\cubemapShader\cubeMapShader.frag" />
+    <None Include="assets\shaders\cubemapShader\cubeMapShader.vert" />
+    <None Include="assets\shaders\cubemaps\cubemaps.frag" />
+    <None Include="assets\shaders\cubemaps\cubemaps.vert" />
     <None Include="assets\shaders\cubeStd\cubeStd.frag" />
     <None Include="assets\shaders\cubeStd\cubeStd.vert" />
     <None Include="assets\shaders\depthShader\depthShader.frag" />

@@ -69,6 +69,15 @@
     <Filter Include="assets\shaders\depthShader">
       <UniqueIdentifier>{36ee87de-dac8-483f-b9e6-4d20154227b9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="assets\shaders\cubeMapShader">
+      <UniqueIdentifier>{e15f9f5a-5dfe-4703-9c4b-39ec1f8afe52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\models\skybox">
+      <UniqueIdentifier>{91241953-0cec-423b-b470-1052417f0892}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\shaders\cubemaps">
+      <UniqueIdentifier>{24915907-7c50-4297-8f17-a86a9ddf9a8a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -155,6 +164,18 @@
     </None>
     <None Include="assets\shaders\depthShader\depthShader.vert">
       <Filter>assets\shaders\depthShader</Filter>
+    </None>
+    <None Include="assets\shaders\cubemapShader\cubeMapShader.frag">
+      <Filter>assets\shaders\cubeMapShader</Filter>
+    </None>
+    <None Include="assets\shaders\cubemapShader\cubeMapShader.vert">
+      <Filter>assets\shaders\cubeMapShader</Filter>
+    </None>
+    <None Include="assets\shaders\cubemaps\cubemaps.frag">
+      <Filter>assets\shaders\cubemaps</Filter>
+    </None>
+    <None Include="assets\shaders\cubemaps\cubemaps.vert">
+      <Filter>assets\shaders\cubemaps</Filter>
     </None>
   </ItemGroup>
 </Project>
