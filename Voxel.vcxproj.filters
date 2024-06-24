@@ -78,6 +78,9 @@
     <Filter Include="assets\shaders\cubemaps">
       <UniqueIdentifier>{24915907-7c50-4297-8f17-a86a9ddf9a8a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="assets\textures">
+      <UniqueIdentifier>{a02fba79-213c-4f5e-88d2-7de820a45363}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -177,5 +180,10 @@
     <None Include="assets\shaders\cubemaps\cubemaps.vert">
       <Filter>assets\shaders\cubemaps</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\textures\container.jpg">
+      <Filter>assets\textures</Filter>
+    </Image>
   </ItemGroup>
 </Project>
